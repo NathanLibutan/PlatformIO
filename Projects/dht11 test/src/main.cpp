@@ -7,30 +7,51 @@
 
 
 
+float cel_to_fah(float cel){
+  float fah = ((cel) * (9/5)) + 32;
+
+  return fah;
+}
+
 DHT dht(DHTPIN, DHTTYPE);
 
 
 void setup() {
+  Serial.begin(9600);
+
   Serial.println("Work");
   Serial.println("DHT11 SENSOR TEST");
 
   pinMode(LED_BUILTIN, OUTPUT);
 
   dht.begin();
-  Serial.begin(9600);
 
 }
 
 void loop() {
-  delay(1000);
+  delay(2000);
 
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature();
 
-  Serial.println("Humidity: ");
-  Serial.println(humidity);
 
-  Serial.println("Temp");
-  Serial.println(temperature);
+  if ((isnan(humidity) || isnan(temperature) == true )){
+    Serial.println("nan ouput");
+  }
+
+  else {
+
+
+  Serial.print("Humidity: ");
+  Serial.println(humidity);
+  Serial.println("\n");
+
+  Serial.print("Temp: ");
+  Serial.println(cel_to_fah(temperature));
+
+  Serial.println("\n");
+
+  }
+
 
 }
