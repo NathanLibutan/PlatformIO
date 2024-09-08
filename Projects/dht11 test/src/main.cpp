@@ -8,7 +8,7 @@
 
 
 float cel_to_fah(float cel){
-  float fah = ((cel) * (9/5)) + 32;
+  float fah = (cel * (9.0/5.0)) + 32 - 3;
 
   return fah;
 }
@@ -43,10 +43,12 @@ void loop() {
 
 
   Serial.print("Humidity: ");
+  
   Serial.println(humidity);
   Serial.println("\n");
 
   Serial.print("Temp: ");
+  Serial.println(temperature);
   Serial.println(cel_to_fah(temperature));
 
   Serial.println("\n");
